@@ -13,6 +13,10 @@ if __name__ == '__main__':
 
     prices = pd.read_csv(args.prices, index_col='ticker')
     news = pd.read_csv(args.news, index_col='ticker')
-    final = prices + news
+    for i in range(2, 21):
+        news[f"p{i}"] = news['p2']
+
+    final = prices + news * 0.47
+
     print(final[['p1', 'p20']])
     final.to_csv(args.output_path)
